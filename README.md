@@ -1,23 +1,7 @@
 # Trabajo de equiparación - Testing: Test Doubles
 
 ```html
-Este trabajo consiste en el uso del lenguaje Go para explicar de manera sencilla y breve los tipos de tests doubles. Aquí se implementaran **mock**, **fake**, **dummy** y **stub**.
-```
-## Logica de negocio
-```html
-El proyecto contiene un dominio el cual es llamado 'motor'. El cual intenta replicar de manera parcial el funcionamiento de una interfaz de db. El dominio cuenta con metodos como 'BuscarPorNombre()', 'AgregarEntrada()', los cuales serán objetos de test.
-Se intenta, a su manera, debido al ejemplo, replicar al patron Repository
-```
-## Sobre los test
-```html
-    ª En principio, la carpeta test contiene una carpeta homonima
-    al dominio testeado. Dentro de cada carpeta de dominio
-    abra una seccion para cada tipo de double.
-    ª La capa sobre la cual se desarrollaran los test es service.
-    º Los test tiene un desarrollo en comentarios.
-    º Cada uno de los test esta definido en dos archivos;
-        * _test.go # Donde se encuentran las funciones de test.
-        * _<tipoTestDouble>.go # Donde se encuentra la definicion del tipo de mock.
+Este trabajo consiste en el uso del lenguaje Go para explicar de manera sencilla y breve los tipos de tests doubles. Aquí se implementaran mock, fake, dummy y stub.
 ```
 ## Requisitos
 
@@ -36,6 +20,39 @@ Se intenta, a su manera, debido al ejemplo, replicar al patron Repository
 1. Genera los archivos *go.mod* y *go.sum*.
 2. Actualiza, verifica y borra las dependencias según corresponda.
 3. Ejecuta el proyecto sin generar un compilado.
+
+## Logica de negocio
+```html
+El proyecto contiene un dominio el cual es llamado 'motor'. El cual intenta replicar de manera parcial el funcionamiento de una interfaz de db. El dominio cuenta con metodos como 'BuscarPorNombre()', 'AgregarEntrada()', los cuales serán objetos de test.
+Se intenta, a su manera, debido al ejemplo, replicar al patron Repository.
+```
+## Arquitectura
+#### Solo con fines prácticos, omitiremos la capa del controlador y, por supuesto, el almacen de datos.
+![arquitectura del patron repository](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.mssrvZrbz8nFEPralCTO6AHaBW%26pid%3DApi&f=1&ipt=acddd3c3720b72912d5897d4f09682a7bb1c06a856bfe2be6a7456dc2ce87d0f&ipo=images)
+## Sobre los test
+```html
+    ª En principio, la carpeta test contiene una carpeta homonima al dominio testeado. Dentro de cada carpeta de dominio
+    habra una seccion para cada tipo de double.
+    ª La capa sobre la cual se desarrollaran los test es service.
+    º Los test tiene un desarrollo en comentarios.
+    º Cada uno de los test esta definido en dos archivos;
+        * "_test.go" # Donde se encuentran las funciones de test.
+        * "_<tipoTestDouble>.go" # Donde se encuentra la definicion del tipo de mock.
+```
+### Sugerencia de lectura de código
+```html
+Se recomienda abordar el código de la siguiente manera:
+    1. internal/motor/
+        1.1 storage.go
+        1.2 repository.go
+        1.3 service.go
+    2. mocks/motor
+        2.1 dummy/
+        2.2 fake/
+        2.3 stub/
+        2.4 mock/
+```
+
 ## Estructura
 ```bash
 . # Raiz
@@ -65,9 +82,6 @@ Se intenta, a su manera, debido al ejemplo, replicar al patron Repository
 
 10 directories, 14 files
 ```
-## Arquitectura
-#### Solo con fines prácticos, omitiremos la capa del controlador y, por supuesto, el almacen de datos.
-![arquitectura del patron repository](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.mssrvZrbz8nFEPralCTO6AHaBW%26pid%3DApi&f=1&ipt=acddd3c3720b72912d5897d4f09682a7bb1c06a856bfe2be6a7456dc2ce87d0f&ipo=images)
 ## Uso
 - #### Una vez que tenga los requisitos previos instalados, puede ejecutar las pruebas unitarias ejecutando el siguiente comando en la carpeta del proyecto:
 ```Go
@@ -79,4 +93,3 @@ go test ./... -v
 ```Go
 go help test 
 ```
-# trabajo-equiparacion
